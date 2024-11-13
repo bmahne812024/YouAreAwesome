@@ -8,18 +8,35 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var message = ""
+    @State private var imageName = ""
+    let messages = [
+        "You are great!",
+        "You are awesome!",
+        "You are amazing!"
+    ]
+    
     var body: some View {
         
         ZStack {
-            LinearGradient(colors: [.blue, .purple], startPoint: .top, endPoint: .bottom)
+            LinearGradient(colors: [.purple, .white], startPoint: .top, endPoint: .bottom)
                 .ignoresSafeArea()
             
             VStack {
-                Image(systemName: "globe")
-                    .imageScale(.large)
-                    .foregroundStyle(.red)
+                Spacer()
+                Image(imageName)
+                    .resizable()
                     .scaledToFit()
-                Text("Hello, world!")
+                Spacer()
+                Text(message)
+                    .font(.largeTitle)
+                
+                Spacer()
+                Button("Push me") {
+                    message = messages[Int.random(in: 0...2)]
+                    imageName = "animal\(Int.random(in: 1...3))"
+                }
+                .buttonStyle(.borderedProminent)
             }
             .padding()
         }
