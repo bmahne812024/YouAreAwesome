@@ -8,39 +8,44 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var message = ""
-    @State private var imageName = ""
-    let messages = [
-        "You are great!",
-        "You are awesome!",
-        "You are amazing!"
-    ]
     
     var body: some View {
         
-        ZStack {
-            LinearGradient(colors: [.purple, .white], startPoint: .top, endPoint: .bottom)
-                .ignoresSafeArea()
-            
-            VStack {
+        
+        GeometryReader() {geometry in
+            VStack() {
                 Spacer()
-                Image(imageName)
+                
+                Image(systemName: "figure.mind.and.body")
                     .resizable()
                     .scaledToFit()
-                Spacer()
-                Text(message)
+                    .frame(width: geometry.size.width * (2/3), height: geometry.size.height * 0.5)
+                    .foregroundStyle(.pink)
+                Text("Namaste")
                     .font(.largeTitle)
-                
+                    .minimumScaleFactor(0.5)
+                    .foregroundStyle(.pink)
+                    .multilineTextAlignment(.center)
+                    .frame(height:150)
+                    .frame(maxWidth: .infinity)
+                    .fontWeight(.black)
                 Spacer()
-                Button("Push me") {
-                    message = messages[Int.random(in: 0...2)]
-                    imageName = "animal\(Int.random(in: 1...3))"
-                }
-                .buttonStyle(.borderedProminent)
+                Spacer()
+                
             }
-            .padding()
+            .border(.blue)
+            
         }
+        
+        
+        
+        
+        
+        
+        
     }
+    
+    
 }
 
 #Preview {
